@@ -9,22 +9,22 @@ import re
 # Modified by cgw 2011/11/06
 # AVAILABLE must contain a list of all the classes that you want exposed
 # Those guys at the top are cool ... don't sue me
-# Modified for Wikipedia by kmf 2017/07/18
+# Modified for DuckDuckGo by kmf 2017/07/18
 
-AVAILABLE = ['WikipediaSearchPlugin']
+AVAILABLE = ['DuckDuckGoSearchPlugin']
 
 _spaces = re.compile(" +")
 
 # TODO:   move some of the constants into a config object
 
-class WikipediaSearchPlugin(plugin.Plugin):
+class DuckDuckGoSearchPlugin(plugin.Plugin):
     capabilities = ['terminal_menu']
 
     def do_search(self, searchMenu):
-        """Launch Wikipedia search for string"""
+        """Launch DuckDuckGo  search for string"""
         if not self.searchstring:
             return
-        base_uri = "https://wikipedia.org/w/index.php?search=%s"
+        base_uri = "https://duckduckgo.com/?q=%s"
         uri = base_uri % urllib.quote(self.searchstring.encode("utf-8"))
         gtk.show_uri(None, uri, gtk.gdk.CURRENT_TIME)
 
@@ -46,10 +46,10 @@ class WikipediaSearchPlugin(plugin.Plugin):
                 displaystring = self.searchstring[:37] + "..."
             else:
                 displaystring = self.searchstring
-            item.set_label("Search Wikipedia for \"%s\"" % displaystring)
+            item.set_label("Search DuckDuckGo for \"%s\"" % displaystring)
             item.set_sensitive(True)
         else:
-            item.set_label("Search Wikipedia")
+            item.set_label("Search DuckDuckGo")
             item.set_sensitive(False)
         # Avoid turning any underscores in selection into menu accelerators
         item.set_use_underline(False)
